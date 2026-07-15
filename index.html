@@ -1,0 +1,1235 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mts Attafsiriyyah</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0f172a" /* Slate 900 - Navy Blue */,
+              primaryLight: "#1e293b" /* Slate 800 */,
+              accent: "#fbbf24" /* Amber 400 - Gold */,
+              accentHover: "#f59e0b" /* Amber 500 */,
+              light: "#f8fafc",
+            },
+            fontFamily: {
+              sans: ['"Inter"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #ffffff;
+        overflow-x: hidden;
+      }
+      ::selection {
+        background-color: #0f172a;
+        color: #fbbf24;
+      }
+
+      /* Slider Hero */
+      .hero-slide {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        inset: 0;
+        transition: transform 1.5s ease-out;
+      }
+      .hero-slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+
+      /* Standard Navbar Transition */
+      #navbar {
+        transition: all 0.3s ease;
+      }
+      #navbar.scrolled {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body class="text-gray-800 antialiased pt-20">
+    <!-- ============================================ -->
+    <!-- OFF-CANVAS MENU (HAMBURGER PANEL) -->
+    <!-- ============================================ -->
+    <div
+      id="menu-overlay"
+      class="fixed inset-0 bg-primary/80 backdrop-blur-sm z-[100] hidden opacity-0"
+    ></div>
+
+    <div
+      id="side-menu"
+      class="fixed top-0 right-0 h-full w-80 bg-white z-[110] transform translate-x-full shadow-2xl flex flex-col justify-between py-6 px-6"
+    >
+      <div>
+        <div
+          class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100"
+        >
+          <span class="font-bold text-xl text-primary tracking-tight"
+            >Menu Utama</span
+          >
+          <button
+            id="close-menu-btn"
+            class="text-gray-400 hover:text-accent transition bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <nav
+          class="flex flex-col space-y-2 text-base font-semibold text-gray-700"
+        >
+          <a
+            href="#"
+            class="menu-item p-3 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-3 border-l-4 border-transparent hover:border-accent"
+            >Beranda</a
+          >
+          <a
+            href="#profil"
+            class="menu-item p-3 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-3 border-l-4 border-transparent hover:border-accent"
+            >Profil Sekolah</a
+          >
+          <a
+            href="#fasilitas"
+            class="menu-item p-3 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-3 border-l-4 border-transparent hover:border-accent"
+            >Fasilitas</a
+          >
+          <a
+            href="#berita"
+            class="menu-item p-3 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-3 border-l-4 border-transparent hover:border-accent"
+            >Berita & Informasi</a
+          >
+          <a
+            href="#kontak"
+            class="menu-item p-3 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors flex items-center gap-3 border-l-4 border-transparent hover:border-accent"
+            >Hubungi Kami</a
+          >
+        </nav>
+      </div>
+
+      <div class="menu-item mt-8 pb-4">
+        <a
+          href="#"
+          class="block w-full text-center bg-primary hover:bg-primaryLight text-white px-5 py-4 rounded-lg font-bold transition-all shadow-md"
+        >
+          PPDB Online 2026
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- NAVBAR STANDAR & FIXED -->
+    <!-- ============================================ -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 w-full z-[90] bg-white border-b border-gray-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 bg-primary flex items-center justify-center text-white font-bold text-xl rounded"
+            >
+              T
+            </div>
+            <span class="font-bold text-xl tracking-tight text-primary"
+              >MTs Attafsiriyyah</span
+            >
+          </div>
+
+          <!-- Desktop Menu -->
+          <div
+            class="hidden lg:flex space-x-8 items-center text-sm font-semibold text-gray-600"
+          >
+            <a href="#" class="hover:text-primary transition">Beranda</a>
+            <a href="#profil" class="hover:text-primary transition">Profil</a>
+            <a href="#fasilitas" class="hover:text-primary transition"
+              >Fasilitas</a
+            >
+            <a href="#berita" class="hover:text-primary transition">Berita</a>
+            <a href="#kontak" class="hover:text-primary transition">Kontak</a>
+          </div>
+
+          <!-- CTA & Hamburger Button -->
+          <div class="flex items-center gap-4">
+            <a
+              href="#"
+              class="hidden lg:inline-flex bg-accent hover:bg-accentHover text-primary px-6 py-2.5 font-bold transition-all items-center gap-2 rounded text-sm"
+            >
+              Portal PPDB
+            </a>
+
+            <!-- HAMBURGER BUTTON -->
+            <button
+              id="open-menu-btn"
+              class="lg:hidden text-primary focus:outline-none w-10 h-10 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION (CLEAN SLIDER) -->
+    <!-- ============================================ -->
+    <header
+      class="relative h-[85vh] bg-primary overflow-hidden w-full flex items-center"
+      id="hero-container"
+    >
+      <div class="absolute inset-0 w-full h-full">
+        <!-- Slide 1 -->
+        <div class="hero-slide active w-full h-full">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10"
+          ></div>
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop"
+            class="w-full h-full object-cover scale-105 transition-transform duration-[10s] ease-out"
+          />
+
+          <div
+            class="absolute inset-0 z-20 flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+          >
+            <div class="max-w-2xl border-l-4 border-accent pl-6 md:pl-10 py-2">
+              <span
+                class="hero-badge text-accent font-bold text-sm tracking-widest uppercase mb-4 block"
+              >
+                Penerimaan Siswa Baru 2026/2027
+              </span>
+              <h1
+                class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6"
+              >
+                Membangun Tradisi <br />
+                <span class="text-gray-300">Keunggulan.</span>
+              </h1>
+              <p
+                class="hero-desc text-base md:text-lg text-gray-300 mb-10 max-w-lg font-light leading-relaxed"
+              >
+                Kurikulum standar internasional yang didesain untuk membentuk
+                generasi berintelektual tinggi dan berkarakter kuat.
+              </p>
+              <div class="hero-btn flex flex-wrap gap-4">
+                <a
+                  href="#"
+                  class="bg-accent hover:bg-accentHover text-primary px-8 py-3.5 font-bold transition-all rounded"
+                >
+                  Daftar Sekarang
+                </a>
+                <a
+                  href="#profil"
+                  class="bg-transparent border border-white hover:bg-white hover:text-primary text-white px-8 py-3.5 font-bold transition-all rounded"
+                >
+                  Jelajahi Profil
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide w-full h-full">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10"
+          ></div>
+          <img
+            src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1470&auto=format&fit=crop"
+            class="w-full h-full object-cover scale-105 transition-transform duration-[10s] ease-out"
+          />
+
+          <div
+            class="absolute inset-0 z-20 flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+          >
+            <div class="max-w-2xl border-l-4 border-accent pl-6 md:pl-10 py-2">
+              <span
+                class="hero-badge text-accent font-bold text-sm tracking-widest uppercase mb-4 block"
+              >
+                Fasilitas Modern
+              </span>
+              <h1
+                class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6"
+              >
+                Ruang Kolaborasi <br />
+                <span class="text-gray-300">Masa Depan.</span>
+              </h1>
+              <p
+                class="hero-desc text-base md:text-lg text-gray-300 mb-10 max-w-lg font-light leading-relaxed"
+              >
+                Infrastruktur pendidikan terbaik untuk memaksimalkan potensi
+                riset, teknologi, dan seni para siswa.
+              </p>
+              <div class="hero-btn">
+                <a
+                  href="#fasilitas"
+                  class="bg-accent hover:bg-accentHover text-primary px-8 py-3.5 font-bold transition-all rounded"
+                >
+                  Lihat Fasilitas Sekolah
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Navigation Slider -->
+      <div
+        class="absolute bottom-8 right-8 z-30 hidden md:flex items-center gap-4"
+      >
+        <button
+          class="slider-dot w-12 h-1 bg-accent transition-all duration-500"
+          onclick="goToSlide(0)"
+        ></button>
+        <button
+          class="slider-dot w-6 h-1 bg-white/40 hover:bg-white transition-all duration-500"
+          onclick="goToSlide(1)"
+        ></button>
+      </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- STATISTIK (BLOK GELAP) -->
+    <!-- ============================================ -->
+    <section
+      class="bg-primaryLight py-12 border-b-4 border-accent relative z-40"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-600/50"
+        >
+          <div class="text-center gsap-stat">
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-1">
+              850<span class="text-accent">+</span>
+            </h3>
+            <p
+              class="text-gray-400 font-medium text-sm uppercase tracking-wider"
+            >
+              Siswa Aktif
+            </p>
+          </div>
+          <div class="text-center gsap-stat">
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-1">
+              60<span class="text-accent">+</span>
+            </h3>
+            <p
+              class="text-gray-400 font-medium text-sm uppercase tracking-wider"
+            >
+              Guru Profesional
+            </p>
+          </div>
+          <div class="text-center gsap-stat">
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-1">
+              100<span class="text-accent">%</span>
+            </h3>
+            <p
+              class="text-gray-400 font-medium text-sm uppercase tracking-wider"
+            >
+              Tingkat Lulus
+            </p>
+          </div>
+          <div class="text-center gsap-stat">
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-1">24</h3>
+            <p
+              class="text-gray-400 font-medium text-sm uppercase tracking-wider"
+            >
+              Program Ekskul
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PROFIL / ABOUT SEKOLAH -->
+    <!-- ============================================ -->
+    <section id="profil" class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+          <!-- Gambar Profil -->
+          <div class="w-full lg:w-1/2 relative gsap-img-reveal">
+            <div
+              class="absolute -inset-4 bg-gray-100 rounded z-0 hidden md:block transform translate-x-4 translate-y-4"
+            ></div>
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=687&auto=format&fit=crop"
+              alt="Kepala Sekolah"
+              class="relative z-10 w-full h-[400px] md:h-[500px] object-cover rounded shadow-lg"
+            />
+          </div>
+
+          <!-- Teks Profil -->
+          <div class="w-full lg:w-1/2">
+            <h4
+              class="text-accent font-bold uppercase tracking-widest text-sm mb-3 gsap-text"
+            >
+              Profil Sekolah
+            </h4>
+            <h2
+              class="text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight gsap-text"
+            >
+              Mendedikasikan Diri untuk <br />Pendidikan Berkualitas.
+            </h2>
+            <p class="text-gray-600 mb-8 leading-relaxed gsap-text">
+              "Selamat datang di SMA Tunas Bangsa. Kami memadukan nilai-nilai
+              moral tradisional dengan kurikulum modern berstandar global. Fokus
+              kami adalah membangun integritas, disiplin, dan keunggulan
+              akademik untuk memastikan setiap siswa siap menjadi pemimpin di
+              berbagai sektor kehidupan masa depan."
+            </p>
+
+            <div class="flex items-center gap-4 gsap-text">
+              <div class="w-14 h-14 bg-gray-200 overflow-hidden rounded">
+                <img
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80"
+                  class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
+                />
+              </div>
+              <div>
+                <p class="font-bold text-primary text-lg">Dr. Ahmad Wijaya</p>
+                <p class="text-gray-500 text-sm">Kepala Sekolah Tunas Bangsa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FASILITAS (GRID BERSIH & MODERN) -->
+    <!-- ============================================ -->
+    <section
+      id="fasilitas"
+      class="py-20 md:py-28 bg-gray-50 border-t border-gray-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gsap-fade-up"
+        >
+          <div class="max-w-2xl">
+            <h4
+              class="text-accent font-bold uppercase tracking-widest text-sm mb-3"
+            >
+              Keunggulan Kami
+            </h4>
+            <h2
+              class="text-3xl md:text-4xl font-bold text-primary tracking-tight"
+            >
+              Fasilitas Penunjang Akademik
+            </h2>
+          </div>
+          <p class="text-gray-500 mt-4 md:mt-0 max-w-sm text-sm">
+            Infrastruktur yang dirancang khusus untuk mendukung kegiatan belajar
+            mengajar yang efektif dan efisien.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="bg-white p-8 border border-gray-100 rounded hover:shadow-xl transition-shadow duration-300 group gsap-card"
+          >
+            <div
+              class="w-12 h-12 bg-primary/5 rounded flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-accent transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 2v17.5A2.5 2.5 0 0 1 6.5 22h-1A2.5 2.5 0 0 1 3 19.5V2"
+                ></path>
+                <path
+                  d="M14 2v17.5A2.5 2.5 0 0 1 11.5 22h-1A2.5 2.5 0 0 1 8 19.5V2"
+                ></path>
+                <path
+                  d="M21 2v17.5a2.5 2.5 0 0 1-2.5 2.5h-1a2.5 2.5 0 0 1-2.5-2.5V2"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Laboratorium Sains
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Peralatan riset berstandar internasional yang menunjang praktikum
+              biologi, fisika, dan kimia secara komprehensif.
+            </p>
+            <div
+              class="w-8 h-1 bg-accent transition-all duration-300 group-hover:w-full"
+            ></div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-white p-8 border border-gray-100 rounded hover:shadow-xl transition-shadow duration-300 group gsap-card"
+          >
+            <div
+              class="w-12 h-12 bg-primary/5 rounded flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-accent transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Perpustakaan Digital
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Akses terintegrasi ke ribuan e-book, literatur jurnal global,
+              serta area diskusi yang tenang dan nyaman.
+            </p>
+            <div
+              class="w-8 h-1 bg-accent transition-all duration-300 group-hover:w-full"
+            ></div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-white p-8 border border-gray-100 rounded hover:shadow-xl transition-shadow duration-300 group gsap-card"
+          >
+            <div
+              class="w-12 h-12 bg-primary/5 rounded flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-accent transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">
+              Pusat Multimedia
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Ruang khusus yang dilengkapi perangkat desain, studio broadcast,
+              dan komputer mutakhir untuk kreativitas siswa.
+            </p>
+            <div
+              class="w-8 h-1 bg-accent transition-all duration-300 group-hover:w-full"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- BERITA & INFORMASI (GRID INTERAKTIF) -->
+    <!-- ============================================ -->
+    <section id="berita" class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 gsap-fade-up">
+          <h4
+            class="text-accent font-bold uppercase tracking-widest text-sm mb-3"
+          >
+            Pusat Informasi
+          </h4>
+          <h2
+            class="text-3xl md:text-4xl font-bold text-primary tracking-tight"
+          >
+            Berita Terbaru
+          </h2>
+        </div>
+
+        <!-- Grid 6 Berita -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="news-container"
+        >
+          <!-- Berita 1 (Visible) -->
+          <article class="group cursor-pointer gsap-news-item">
+            <div class="relative h-60 overflow-hidden rounded mb-5">
+              <img
+                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1470&auto=format&fit=crop"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <span
+              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              >15 Juli 2026 • Akademik</span
+            >
+            <h3
+              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+            >
+              Sukses Gelar Pameran Sains Inovatif Tahunan
+            </h3>
+            <p class="text-gray-600 text-sm line-clamp-2">
+              Siswa-siswi SMA Tunas Bangsa kembali memamerkan karya riset ilmiah
+              terbaik mereka yang dihadiri pakar universitas.
+            </p>
+          </article>
+
+          <!-- Berita 2 (Visible) -->
+          <article class="group cursor-pointer gsap-news-item">
+            <div class="relative h-60 overflow-hidden rounded mb-5">
+              <img
+                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1470&auto=format&fit=crop"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <span
+              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              >10 Juli 2026 • Prestasi</span
+            >
+            <h3
+              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+            >
+              Tim Robotik Sabet Juara 1 Tingkat Nasional
+            </h3>
+            <p class="text-gray-600 text-sm line-clamp-2">
+              Inovasi alat otomatisasi pertanian membawa tim robotik sekolah
+              meraih medali emas di kejuaraan nasional tahun ini.
+            </p>
+          </article>
+
+          <!-- Berita 3 (Visible) -->
+          <article class="group cursor-pointer gsap-news-item">
+            <div class="relative h-60 overflow-hidden rounded mb-5">
+              <img
+                src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=1470&auto=format&fit=crop"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <span
+              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              >05 Juli 2026 • Kegiatan</span
+            >
+            <h3
+              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+            >
+              Program Bakti Sosial Menyambut Siswa Baru
+            </h3>
+            <p class="text-gray-600 text-sm line-clamp-2">
+              Menanamkan nilai kepedulian sosial melalui kegiatan bakti
+              masyarakat yang melibatkan seluruh siswa angkatan baru.
+            </p>
+          </article>
+
+          <!-- Berita 4 (Hidden Default) -->
+          <article class="group cursor-pointer hidden extra-news">
+            <div class="relative h-60 overflow-hidden rounded mb-5">
+              <img
+                src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1470&auto=format&fit=crop"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <span
+              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              >28 Juni 2026 • Seni & Budaya</span
+            >
+            <h3
+              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+            >
+              Pentas Seni Tahunan Berlangsung Sangat Meriah
+            </h3>
+            <p class="text-gray-600 text-sm line-clamp-2">
+              Mengangkat tema kebudayaan nusantara, pentas seni tahun ini
+              berhasil menyedot ribuan penonton dari berbagai kalangan.
+            </p>
+          </article>
+
+          <!-- Berita 5 (Hidden Default) -->
+          <article class="group cursor-pointer hidden extra-news">
+            <div class="relative h-60 overflow-hidden rounded mb-5">
+              <img
+                src="https://images.unsplash.com/photo-1519315901367-f34f826315ee?q=80&w=1470&auto=format&fit=crop"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <span
+              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              >20 Juni 2026 • Olahraga</span
+            >
+            <h3
+              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+            >
+              Tim Basket Sekolah Melaju Mulus ke Final DBL
+            </h3>
+            <p class="text-gray-600 text-sm line-clamp-2">
+              Dengan persiapan yang matang, tim basket andalan sekolah sukses
+              mengalahkan juara bertahan di babak semifinal.
+            </p>
+          </article>
+
+          <!-- Berita 6 (Hidden Default) -->
+          <article class="group cursor-pointer hidden extra-news">
+            <div class="relative h-60 overflow-hidden rounded mb-5">
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <span
+              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              >12 Juni 2026 • Akademik</span
+            >
+            <h3
+              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+            >
+              Kunjungan Universitas Terkemuka Internasional
+            </h3>
+            <p class="text-gray-600 text-sm line-clamp-2">
+              Delegasi dari 3 universitas top dunia hadir untuk mempresentasikan
+              program beasiswa khusus bagi alumni Tunas Bangsa.
+            </p>
+          </article>
+        </div>
+
+        <!-- Tombol Toggle Berita -->
+        <div class="text-center mt-12">
+          <button
+            id="btn-toggle-news"
+            class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 font-bold transition-colors rounded focus:outline-none"
+          >
+            Lihat Semua Berita
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CTA & FOOTER (KOTAK & PROFESIONAL) -->
+    <!-- ============================================ -->
+    <div id="kontak" class="bg-primary">
+      <!-- Banner CTA -->
+      <div class="bg-accent py-12">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <div class="mb-6 md:mb-0 text-center md:text-left">
+            <h3 class="text-2xl md:text-3xl font-bold text-primary mb-2">
+              Pendaftaran Tahun Ajaran 2026 Dibuka
+            </h3>
+            <p class="text-primary/80 font-medium text-sm md:text-base">
+              Bergabunglah dengan komunitas pembelajar masa depan sekarang.
+            </p>
+          </div>
+          <a
+            href="#"
+            class="bg-primary text-white hover:bg-primaryLight px-8 py-3.5 font-bold transition-colors rounded"
+          >
+            Informasi PPDB
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Main -->
+      <footer class="pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Kolom 1 -->
+            <div class="md:col-span-1">
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-10 h-10 bg-white flex items-center justify-center text-primary font-bold text-xl rounded"
+                >
+                  T
+                </div>
+                <span
+                  class="font-bold text-2xl text-white uppercase tracking-tight"
+                  >Tunas Bangsa</span
+                >
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                Membentuk masa depan melalui pendidikan berbasis karakter,
+                disiplin, dan penguasaan ilmu pengetahuan global.
+              </p>
+              <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-accent transition">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                    ></path>
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-accent transition">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect
+                      x="2"
+                      y="2"
+                      width="20"
+                      height="20"
+                      rx="5"
+                      ry="5"
+                    ></rect>
+                    <path
+                      d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                    ></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-accent transition">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+                    ></path>
+                    <polygon
+                      points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+                    ></polygon>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Kolom 2 -->
+            <div>
+              <h4 class="text-white font-bold mb-6">Navigasi</h4>
+              <ul class="space-y-3 text-gray-400 text-sm font-medium">
+                <li>
+                  <a href="#" class="hover:text-accent transition">Beranda</a>
+                </li>
+                <li>
+                  <a href="#profil" class="hover:text-accent transition"
+                    >Sejarah & Visi Misi</a
+                  >
+                </li>
+                <li>
+                  <a href="#fasilitas" class="hover:text-accent transition"
+                    >Fasilitas Akademik</a
+                  >
+                </li>
+                <li>
+                  <a href="#berita" class="hover:text-accent transition"
+                    >Papan Pengumuman</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Kolom 3 -->
+            <div>
+              <h4 class="text-white font-bold mb-6">Informasi Penting</h4>
+              <ul class="space-y-3 text-gray-400 text-sm font-medium">
+                <li>
+                  <a href="#" class="hover:text-accent transition"
+                    >Pendaftaran (PPDB)</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-accent transition"
+                    >Kalender Akademik</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-accent transition"
+                    >Karir / Lowongan</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="hover:text-accent transition"
+                    >E-Learning Siswa</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Kolom 4 -->
+            <div>
+              <h4 class="text-white font-bold mb-6">Kontak Kami</h4>
+              <ul class="space-y-4 text-gray-400 text-sm">
+                <li class="flex items-start gap-3">
+                  <svg
+                    class="w-5 h-5 text-accent mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                  </svg>
+                  <span
+                    >Jl. Pendidikan Utama No. 123, Jakarta Selatan, 12345,
+                    Indonesia</span
+                  >
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg
+                    class="w-5 h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    ></path>
+                  </svg>
+                  <span>(021) 123-4567</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500"
+          >
+            <p>&copy; 2026 SMA Tunas Bangsa. Seluruh Hak Cipta Dilindungi.</p>
+            <div class="space-x-4">
+              <a href="#" class="hover:text-white transition"
+                >Kebijakan Privasi</a
+              >
+              <a href="#" class="hover:text-white transition"
+                >Syarat & Ketentuan</a
+              >
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LOGIKA JAVASCRIPT & GSAP -->
+    <!-- ============================================ -->
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // =========================================
+      // 1. NAVBAR SCROLL EFFECT
+      // =========================================
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+          navbar.classList.add("py-2");
+        } else {
+          navbar.classList.remove("scrolled");
+          navbar.classList.remove("py-2");
+        }
+      });
+
+      // =========================================
+      // 2. MENU OFF-CANVAS HAMBURGER
+      // =========================================
+      const openBtn = document.getElementById("open-menu-btn");
+      const closeBtn = document.getElementById("close-menu-btn");
+      const overlay = document.getElementById("menu-overlay");
+
+      const menuTl = gsap.timeline({ paused: true });
+
+      menuTl
+        .to(overlay, { display: "block", opacity: 1, duration: 0.2 })
+        .to("#side-menu", { x: 0, duration: 0.3, ease: "power2.out" })
+        .fromTo(
+          ".menu-item",
+          { x: 20, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.out",
+          },
+        );
+
+      openBtn.addEventListener("click", () => {
+        menuTl.play();
+        document.body.style.overflow = "hidden";
+      });
+
+      const closeMenu = () => {
+        menuTl.reverse();
+        document.body.style.overflow = "auto";
+      };
+
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+      document.querySelectorAll(".menu-item").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      // =========================================
+      // 3. LOGIKA TOMBOL "LIHAT SEMUA BERITA"
+      // =========================================
+      const btnToggleNews = document.getElementById("btn-toggle-news");
+      const extraNews = document.querySelectorAll(".extra-news");
+      let isNewsExpanded = false;
+
+      btnToggleNews.addEventListener("click", () => {
+        isNewsExpanded = !isNewsExpanded;
+
+        if (isNewsExpanded) {
+          // Munculkan berita
+          extraNews.forEach((news) => {
+            news.classList.remove("hidden");
+            // Tambahkan efek animasi masuk
+            gsap.fromTo(
+              news,
+              { opacity: 0, y: 30 },
+              { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+            );
+          });
+          btnToggleNews.textContent = "Tutup Sebagian Berita";
+        } else {
+          // Sembunyikan berita
+          extraNews.forEach((news) => {
+            news.classList.add("hidden");
+          });
+          btnToggleNews.textContent = "Lihat Semua Berita";
+
+          // Opsional: Scroll sedikit ke atas agar batas grid terlihat rapi
+          document
+            .getElementById("berita")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      // =========================================
+      // 4. HERO SLIDER LOGIC
+      // =========================================
+      const slides = document.querySelectorAll(".hero-slide");
+      const dots = document.querySelectorAll(".slider-dot");
+      let currentSlide = 0;
+      let isAnimating = false;
+
+      function animateHeroText(slide) {
+        const badge = slide.querySelector(".hero-badge");
+        const title = slide.querySelector(".hero-title");
+        const desc = slide.querySelector(".hero-desc");
+        const btn = slide.querySelector(".hero-btn");
+
+        gsap.fromTo(
+          [badge, title, desc, btn],
+          { x: -30, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            delay: 0.3,
+          },
+        );
+      }
+
+      animateHeroText(slides[0]);
+
+      window.goToSlide = function (index) {
+        if (isAnimating || currentSlide === index) return;
+        isAnimating = true;
+
+        const prev = slides[currentSlide];
+        currentSlide = index;
+        const next = slides[currentSlide];
+
+        if (dots.length > 0) {
+          dots.forEach((dot) => {
+            dot.classList.remove("w-12", "bg-accent");
+            dot.classList.add("w-6", "bg-white/40");
+          });
+          dots[currentSlide].classList.remove("w-6", "bg-white/40");
+          dots[currentSlide].classList.add("w-12", "bg-accent");
+        }
+
+        gsap.set(next, { visibility: "visible", zIndex: 2 });
+        gsap.set(prev, { zIndex: 1 });
+
+        gsap.fromTo(
+          next,
+          { opacity: 0 },
+          { opacity: 1, duration: 1, ease: "power2.inOut" },
+        );
+
+        gsap.to(prev, {
+          opacity: 0,
+          duration: 1,
+          ease: "power2.inOut",
+          onComplete: () => {
+            prev.style.visibility = "hidden";
+            prev.classList.remove("active");
+            next.classList.add("active");
+            isAnimating = false;
+          },
+        });
+
+        animateHeroText(next);
+      };
+
+      window.changeSlide = function (dir) {
+        let next = currentSlide + dir;
+        if (next >= slides.length) next = 0;
+        if (next < 0) next = slides.length - 1;
+        goToSlide(next);
+      };
+
+      setInterval(() => {
+        if (!isAnimating) changeSlide(1);
+      }, 7000);
+
+      // =========================================
+      // 5. SCROLLTRIGGER ANIMATIONS
+      // =========================================
+      gsap.from(".gsap-stat", {
+        scrollTrigger: { trigger: ".gsap-stat", start: "top 85%" },
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
+
+      gsap.from(".gsap-img-reveal", {
+        scrollTrigger: { trigger: "#profil", start: "top 75%" },
+        x: -30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      gsap.from(".gsap-text", {
+        scrollTrigger: { trigger: "#profil", start: "top 75%" },
+        x: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
+
+      gsap.utils.toArray(".gsap-fade-up").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: { trigger: el, start: "top 85%" },
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.from(".gsap-card", {
+        scrollTrigger: { trigger: "#fasilitas", start: "top 75%" },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+      });
+
+      // Animasi untuk berita pertama kali di load saat scroll
+      gsap.from(".gsap-news-item", {
+        scrollTrigger: { trigger: "#news-container", start: "top 80%" },
+        y: 40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out",
+      });
+    </script>
+  </body>
+</html>
