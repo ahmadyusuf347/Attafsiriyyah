@@ -87,8 +87,11 @@
         <div
           class="flex justify-between items-center mb-8 pb-4 border-b border-gray-100"
         >
-          <span class="font-bold text-xl text-primary tracking-tight"
-            >Menu Utama</span
+          <span
+            class="flex gap-2 text-xl text-primary tracking-tight items-center"
+          >
+            <img src="/asset/Logo1.png" class="w-10 h-10" alt="" />MTs
+            Attafsiriyyah</span
           >
           <button
             id="close-menu-btn"
@@ -157,16 +160,14 @@
     <!-- ============================================ -->
     <nav
       id="navbar"
-      class="fixed top-0 left-0 w-full z-[90] bg-white border-b border-gray-100"
+      class="fixed items-center top-0 left-0 w-full z-[90] bg-white border-b border-gray-100"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Logo -->
           <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 bg-primary flex items-center justify-center text-white font-bold text-xl rounded"
-            >
-              T
+            <div class="w-14 h-14">
+              <img src="Logo.jpg" alt="" />
             </div>
             <span class="font-bold text-xl tracking-tight text-primary"
               >MTs Attafsiriyyah</span
@@ -174,25 +175,60 @@
           </div>
 
           <!-- Desktop Menu -->
+
           <div
             class="hidden lg:flex space-x-8 items-center text-sm font-semibold text-gray-600"
           >
-            <a href="#" class="hover:text-primary transition">Beranda</a>
-            <a href="#profil" class="hover:text-primary transition">Profil</a>
-            <a href="#fasilitas" class="hover:text-primary transition"
+            <a
+              href="#"
+              class="relative text-gray-700 hover:text-[#25a244] pb-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-center after:scale-x-0 after:bg-[#29bf12] after:transition-transform after:duration-300 hover:after:scale-x-100"
+              >Beranda</a
+            >
+            <a
+              href="#profil"
+              class="relative text-gray-700 hover:text-[#25a244] pb-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-center after:scale-x-0 after:bg-[#29bf12] after:transition-transform after:duration-300 hover:after:scale-x-100"
+              >Profil-MTs</a
+            >
+            <a
+              href="#fasilitas"
+              class="relative text-gray-700 hover:text-[#25a244] pb-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-center after:scale-x-0 after:bg-[#29bf12] after:transition-transform after:duration-300 hover:after:scale-x-100"
               >Fasilitas</a
             >
-            <a href="#berita" class="hover:text-primary transition">Berita</a>
-            <a href="#kontak" class="hover:text-primary transition">Kontak</a>
+            <a
+              href="#berita"
+              class="relative text-gray-700 hover:text-[#25a244] pb-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-center after:scale-x-0 after:bg-[#29bf12] after:transition-transform after:duration-300 hover:after:scale-x-100"
+              >Berita</a
+            >
+            <a
+              href="#kontak"
+              class="relative text-gray-700 hover:text-[#25a244] pb-1 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:origin-center after:scale-x-0 after:bg-[#29bf12] after:transition-transform after:duration-300 hover:after:scale-x-100"
+              >Kontak</a
+            >
           </div>
 
           <!-- CTA & Hamburger Button -->
           <div class="flex items-center gap-4">
             <a
               href="#"
-              class="hidden lg:inline-flex bg-accent hover:bg-accentHover text-primary px-6 py-2.5 font-bold transition-all items-center gap-2 rounded text-sm"
+              class="group hidden lg:inline-flex bg-[#25a244] text-[#ffffff] hover:bg-[#004b23] hover:text-[#38b000] px-6 py-2.5 font-bold transition-all items-center gap-2 rounded-full text-sm"
             >
               Portal PPDB
+
+              <!-- SVG Panah dengan Animasi Geser -->
+              <svg
+                xmlns="http://w3.org"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5l6 6m0 0l-6 6m6-6H4.5"
+                />
+              </svg>
             </a>
 
             <!-- HAMBURGER BUTTON -->
@@ -235,16 +271,18 @@
             class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent z-10"
           ></div>
           <img
-            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1470&auto=format&fit=crop"
+            src="/Heroes.jpg"
             class="w-full h-full object-cover scale-105 transition-transform duration-[10s] ease-out"
           />
 
           <div
             class="absolute inset-0 z-20 flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
           >
-            <div class="max-w-2xl border-l-4 border-accent pl-6 md:pl-10 py-2">
+            <div
+              class="max-w-2xl border-l-4 border-[#25a244] pl-6 md:pl-10 py-2"
+            >
               <span
-                class="hero-badge text-accent font-bold text-sm tracking-widest uppercase mb-4 block"
+                class="hero-badge text-[#25a244] font-bold text-sm tracking-widest uppercase mb-4 block"
               >
                 Penerimaan Siswa Baru 2026/2027
               </span>
@@ -263,7 +301,7 @@
               <div class="hero-btn flex flex-wrap gap-4">
                 <a
                   href="#"
-                  class="bg-accent hover:bg-accentHover text-primary px-8 py-3.5 font-bold transition-all rounded"
+                  class="bg-[#25a244] hover:bg-[#ffffff] text-primary px-8 py-3.5 font-bold transition-all rounded"
                 >
                   Daftar Sekarang
                 </a>
@@ -291,9 +329,11 @@
           <div
             class="absolute inset-0 z-20 flex flex-col justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
           >
-            <div class="max-w-2xl border-l-4 border-accent pl-6 md:pl-10 py-2">
+            <div
+              class="max-w-2xl border-l-4 border-[#25a244] pl-6 md:pl-10 py-2"
+            >
               <span
-                class="hero-badge text-accent font-bold text-sm tracking-widest uppercase mb-4 block"
+                class="hero-badge text-[#25a244] font-bold text-sm tracking-widest uppercase mb-4 block"
               >
                 Fasilitas Modern
               </span>
@@ -312,7 +352,7 @@
               <div class="hero-btn">
                 <a
                   href="#fasilitas"
-                  class="bg-accent hover:bg-accentHover text-primary px-8 py-3.5 font-bold transition-all rounded"
+                  class="bg-[#25a244] hover:bg-[#ffffff] text-primary px-8 py-3.5 font-bold transition-all rounded"
                 >
                   Lihat Fasilitas Sekolah
                 </a>
@@ -420,7 +460,7 @@
               Mendedikasikan Diri untuk <br />Pendidikan Berkualitas.
             </h2>
             <p class="text-gray-600 mb-8 leading-relaxed gsap-text">
-              "Selamat datang di SMA Tunas Bangsa. Kami memadukan nilai-nilai
+              "Selamat datang di MTs Attafsiriyyah. Kami memadukan nilai-nilai
               moral tradisional dengan kurikulum modern berstandar global. Fokus
               kami adalah membangun integritas, disiplin, dan keunggulan
               akademik untuk memastikan setiap siswa siap menjadi pemimpin di
@@ -435,8 +475,10 @@
                 />
               </div>
               <div>
-                <p class="font-bold text-primary text-lg">Dr. Ahmad Wijaya</p>
-                <p class="text-gray-500 text-sm">Kepala Sekolah Tunas Bangsa</p>
+                <p class="font-bold text-primary text-lg">Ust. Cece S.P.d.I</p>
+                <p class="text-gray-500 text-sm">
+                  Kepala Sekolah MTs Attafsiriyyah
+                </p>
               </div>
             </div>
           </div>
@@ -615,22 +657,23 @@
           <article class="group cursor-pointer gsap-news-item">
             <div class="relative h-60 overflow-hidden rounded mb-5">
               <img
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1470&auto=format&fit=crop"
+                src="/asset/Berita1.jpeg"
                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
             </div>
             <span
-              class="text-accent font-bold text-xs tracking-wider uppercase mb-2 block"
+              class="text-[#25a244] font-bold text-xs tracking-wider uppercase mb-2 block"
               >15 Juli 2026 • Akademik</span
             >
             <h3
-              class="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors leading-snug"
+              class="text-xl font-bold text-primary mb-3 group-hover:text-[#38b000] transition-colors leading-snug"
             >
-              Sukses Gelar Pameran Sains Inovatif Tahunan
+              Siswa Peraih Nilai Tertinggi : Muhammad Albarr Farizi
             </h3>
             <p class="text-gray-600 text-sm line-clamp-2">
-              Siswa-siswi SMA Tunas Bangsa kembali memamerkan karya riset ilmiah
-              terbaik mereka yang dihadiri pakar universitas.
+              Siswa MTs Attafsiriyyah Kota Sukabumi Muhammad Albarr Farizi
+              sebagai peraih nilai Rerata tertinggi ke-1 jenjang MTs se-Kota
+              Sukabumi.
             </p>
           </article>
 
@@ -767,7 +810,7 @@
     <!-- ============================================ -->
     <div id="kontak" class="bg-primary">
       <!-- Banner CTA -->
-      <div class="bg-accent py-12">
+      <div class="bg-[#38b000] py-12">
         <div
           class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center"
         >
@@ -781,7 +824,7 @@
           </div>
           <a
             href="#"
-            class="bg-primary text-white hover:bg-primaryLight px-8 py-3.5 font-bold transition-colors rounded"
+            class="bg-primary text-white hover:bg-[#ffffff] hover:text-[#000000] px-8 py-3.5 font-bold transition-colors rounded"
           >
             Informasi PPDB
           </a>
@@ -796,13 +839,13 @@
             <div class="md:col-span-1">
               <div class="flex items-center gap-3 mb-6">
                 <div
-                  class="w-10 h-10 bg-white flex items-center justify-center text-primary font-bold text-xl rounded"
+                  class="w-16 h-16 flex items-center justify-center text-primary font-bold text-xl rounded"
                 >
-                  T
+                  <img src="/asset/Logo1.png" alt="" />
                 </div>
                 <span
                   class="font-bold text-2xl text-white uppercase tracking-tight"
-                  >Tunas Bangsa</span
+                  >MTs Attafsiriyyah</span
                 >
               </div>
               <p class="text-gray-400 text-sm leading-relaxed mb-6">
@@ -953,7 +996,7 @@
                     ></path>
                   </svg>
                   <span
-                    >Jl. Pendidikan Utama No. 123, Jakarta Selatan, 12345,
+                    >Jl. Tipar Gang Pasantren, Tipar, Citamiang, Kota Sukabumi -
                     Indonesia</span
                   >
                 </li>
@@ -971,7 +1014,7 @@
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     ></path>
                   </svg>
-                  <span>(021) 123-4567</span>
+                  <span>(+62) 123-0000</span>
                 </li>
               </ul>
             </div>
@@ -980,14 +1023,9 @@
           <div
             class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500"
           >
-            <p>&copy; 2026 SMA Tunas Bangsa. Seluruh Hak Cipta Dilindungi.</p>
+            <p>&copy; 2026 MTs Attafsiriyyah. Seluruh Hak Cipta Dilindungi.</p>
             <div class="space-x-4">
-              <a href="#" class="hover:text-white transition"
-                >Kebijakan Privasi</a
-              >
-              <a href="#" class="hover:text-white transition"
-                >Syarat & Ketentuan</a
-              >
+              <a href="#" class="hover:text-white transition">Ahmad Yusuf</a>
             </div>
           </div>
         </div>
