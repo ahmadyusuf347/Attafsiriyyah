@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PPDB Online - Pendaftaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-100 min-h-screen p-4 md:p-8 flex items-center justify-center font-sans"
+  >
+    <!-- CONTAINER UTAMA: border tipis, shadow, rounded, background putih -->
+    <div
+      class="bg-white rounded-2xl border border-gray-100 shadow-xl w-full max-w-6xl overflow-hidden flex flex-col md:flex-row"
+    >
+      <!-- KIRI: Konten Banner / Gambar -->
+      <!-- md:w-1/2 membuat gambar mengambil 50% lebar di layar sedang ke atas -->
+      <div
+        class="md:w-1/2 bg-[#023e7d] p-8 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-gray-100"
+      >
+        <!-- Ganti 'URL_GAMBAR_ANDA' dengan link foto sekolah atau logo -->
+        <img
+          src="Logo1.png"
+          alt="Ilustrasi PPDB"
+          class="w-44 h-auto max-w-sm mb-6 object-contain"
+        />
+      </div>
+
+      <!-- KANAN: Form Pendaftaran (diambil dari kode sebelumnya) -->
+      <div class="md:w-1/2 p-6 md:p-10">
+        <form id="waForm" class="space-y-5">
+          <div class="mb-6">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900">
+              Formulir Pendaftaran
+            </h2>
+            <p class="text-gray-600 mt-1">PPDB 2026 MTs Attafsiriyyah</p>
+          </div>
+
+          <!-- Input Fields (ditata lebih kompak) -->
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >Nama Lengkap</label
+              >
+              <input
+                type="text"
+                id="nama"
+                placeholder="Nama calon siswa"
+                required
+                class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >No Telepon / WA</label
+              >
+              <input
+                type="tel"
+                id="telepon"
+                placeholder="0812xxx"
+                required
+                class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >Alamat Lengkap</label
+              >
+              <input
+                type="text"
+                id="alamat"
+                placeholder="Alamat lengkap sesuai kartu keluarga"
+                required
+                class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700"
+                  >Nama Ayah</label
+                >
+                <input
+                  type="text"
+                  id="ayah"
+                  required
+                  class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700"
+                  >Nama Ibu</label
+                >
+                <input
+                  type="text"
+                  id="ibu"
+                  required
+                  class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >Asal Sekolah</label
+              >
+              <input
+                type="text"
+                id="sekolah"
+                placeholder="SD/MI..."
+                required
+                class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >Pertanyaan (Opsional)</label
+              >
+              <textarea
+                id="pertanyaan"
+                rows="3"
+                placeholder="Ada yang ingin ditanyakan?"
+                class="mt-1 block w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 transition"
+              ></textarea>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-indigo-900 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-indigo-100 transition duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg"
+          >
+            <!-- Ikon WhatsApp -->
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .016 5.478.015 12.033c0 2.087.544 4.136 1.573 5.925L0 24l6.397-1.677a11.81 11.81 0 0 0 5.652 1.438h.002c6.555 0 12.034-5.478 12.035-12.033a11.815 11.815 0 0 0-3.434-8.354"
+              />
+            </svg>
+            Kirim Pendaftaran
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("waForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Ambil semua nilai input
+          const nama = document.getElementById("nama").value;
+          const telp = document.getElementById("telepon").value;
+          const alamat = document.getElementById("alamat").value;
+          const ayah = document.getElementById("ayah").value;
+          const ibu = document.getElementById("ibu").value;
+          const sekolah = document.getElementById("sekolah").value;
+          const pertanyaan = document.getElementById("pertanyaan").value;
+
+          // Nomor tujuan (Ganti dengan nomor Anda)
+          const nomorHP = "628561507488";
+
+          // Template pesan WhatsApp
+          const teksFinal =
+            `*FORMULIR PENDAFTARAN PPDB 2026*%0A%0A` +
+            `Nama Lengkap: ${nama}%0A` +
+            `No WA: ${telp}%0A` +
+            `Alamat: ${alamat}%0A` +
+            `Ayah: ${ayah}%0A` +
+            `Ibu: ${ibu}%0A` +
+            `Asal Sekolah: ${sekolah}%0A` +
+            `Pertanyaan: ${pertanyaan}`;
+
+          // URL Encode dan buka tab baru
+          const url = `https://wa.me/${nomorHP}?text=${teksFinal}`;
+          window.open(url, "_blank");
+        });
+    </script>
+  </body>
+</html>
